@@ -6,17 +6,17 @@ import ReactionList from '../components/ReactionList';
 import { useQuery } from '@apollo/client';
 import { QUERY_THOUGHT } from '../utils/queries';
 
-const SingleThought = props => {
+const SingleThought = (props) => {
   const { id: thoughtId } = useParams();
-  
+
   const { loading, data } = useQuery(QUERY_THOUGHT, {
-    variables: { id: thoughtId }
+    variables: { id: thoughtId },
   });
 
   const thought = data?.thought || {};
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   return (
@@ -33,7 +33,9 @@ const SingleThought = props => {
         </div>
       </div>
 
-      {thought.reactionCount > 0 && <ReactionList reactions={thought.reactions} />}
+      {thought.reactionCount > 0 && (
+        <ReactionList reactions={thought.reactions} />
+      )}
     </div>
   );
 };
